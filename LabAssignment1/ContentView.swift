@@ -18,7 +18,7 @@ struct ContentView: View {
             Image(systemName: "globe")
                 .imageScale(.large)
                 .foregroundColor(.accentColor)
-            Text("\(wrong)")
+            Text("\(number)")
             
             Button("Prime") {
                 answer(isPrime: true)
@@ -40,6 +40,12 @@ struct ContentView: View {
     }
     
     func isPrimeNumber(n: Int) -> Bool {
+        if n < 2 {
+            return false
+        }
+        for i in 2..<n where n % i == 0 {
+            return false
+        }
         return true
     }
 }
