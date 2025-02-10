@@ -15,11 +15,16 @@ struct ContentView: View {
     
     
     var body: some View {
-        VStack {
+        VStack(spacing: 15) {
+            Text("Prime Number Game")
+                .font(.headline)
+                
             Image(systemName: "globe")
                 .imageScale(.large)
                 .foregroundColor(.accentColor)
             Text("\(number)")
+                .font(.title)
+                .foregroundColor(Color.purple)
             Text("\(correct)")
             Text("\(wrong)")
             
