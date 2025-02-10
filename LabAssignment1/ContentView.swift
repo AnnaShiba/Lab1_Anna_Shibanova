@@ -19,6 +19,8 @@ struct ContentView: View {
                 .imageScale(.large)
                 .foregroundColor(.accentColor)
             Text("\(number)")
+            Text("\(correct)")
+            Text("\(wrong)")
             
             Button("Prime") {
                 answer(isPrime: true)
@@ -37,6 +39,11 @@ struct ContentView: View {
         } else {
             wrong += 1
         }
+        getNewNumber()
+    }
+    
+    func getNewNumber() {
+        number = Int.random(in: 1...100)
     }
     
     func isPrimeNumber(n: Int) -> Bool {
