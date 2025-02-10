@@ -39,10 +39,10 @@ struct ContentView: View {
         number += 1
         if isPrime == isPrimeNumber(n: number) {
             correct += 1
-            result = "Yes"
+            result = "✅"
         } else {
             wrong += 1
-            result = "No"
+            result = "❌"
         }
         getNewNumber()
     }
