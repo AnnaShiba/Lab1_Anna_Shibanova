@@ -37,11 +37,17 @@ struct ContentView: View {
             
             Text(result ?? "")
         }
+        .onAppear {
+            getNewNumber()
+            Timer.scheduledTimer(withTimeInterval: 5, repeats: true, block: { _ in
+                    wrong += 1
+                    result = "❌"
+            })
+        }
         .padding()
     }
     
     func answer(isPrime: Bool) {
-        number += 1
         if isPrime == isPrimeNumber(n: number) {
             correct += 1
             result = "✅"
