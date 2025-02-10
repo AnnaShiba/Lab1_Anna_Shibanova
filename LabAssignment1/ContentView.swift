@@ -11,6 +11,7 @@ struct ContentView: View {
     @State private var number = 0
     @State private var correct = 0
     @State private var wrong = 0
+    @State private var result: String? = nil
     
     
     var body: some View {
@@ -28,6 +29,8 @@ struct ContentView: View {
             Button("Not Prime") {
                 answer(isPrime: false)
             }
+            
+            Text(result ?? "")
         }
         .padding()
     }
@@ -36,8 +39,10 @@ struct ContentView: View {
         number += 1
         if isPrime == isPrimeNumber(n: number) {
             correct += 1
+            result = "Yes"
         } else {
             wrong += 1
+            result = "No"
         }
         getNewNumber()
     }
