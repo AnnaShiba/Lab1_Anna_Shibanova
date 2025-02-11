@@ -12,16 +12,14 @@ struct ContentView: View {
     @State private var correct = 0
     @State private var wrong = 0
     @State private var result: String? = nil
+    @State private var showSummary: Bool = false
     
     
     var body: some View {
-        VStack(spacing: 15) {
+        VStack(spacing: 25) {
             Text("Prime Number Game")
                 .font(.headline)
-                
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
+            
             Text("\(number)")
                 .font(.title)
                 .foregroundColor(Color.purple)
@@ -40,9 +38,15 @@ struct ContentView: View {
         .onAppear {
             getNewNumber()
             Timer.scheduledTimer(withTimeInterval: 5, repeats: true, block: { _ in
-                    wrong += 1
-                    result = "❌"
+                wrongResult()
+                getNewNumber()
+                
             })
+        }
+        .alert("Summary", isPresented: $showSummary) {
+            Button("OK") {
+                showSummary = false
+            }
         }
         .padding()
     }
@@ -50,16 +54,23 @@ struct ContentView: View {
     func answer(isPrime: Bool) {
         if isPrime == isPrimeNumber(n: number) {
             correct += 1
-            result = "✅"
+            result = "Last number: ✅"
         } else {
-            wrong += 1
-            result = "❌"
+            wrongResult()
         }
         getNewNumber()
     }
     
+    func wrongResult() {
+        wrong += 1
+        result = "Last number: ❌"
+    }
+    
     func getNewNumber() {
         number = Int.random(in: 1...100)
+        if correct + wrong > 10 {
+            showSummary = true
+        }
     }
     
     func isPrimeNumber(n: Int) -> Bool {
