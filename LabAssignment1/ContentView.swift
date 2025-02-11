@@ -23,8 +23,6 @@ struct ContentView: View {
             Text("\(number)")
                 .font(.title)
                 .foregroundColor(Color.purple)
-            Text("\(correct)")
-            Text("\(wrong)")
             
             Button("Prime") {
                 answer(isPrime: true)
@@ -39,13 +37,12 @@ struct ContentView: View {
             getNewNumber()
             Timer.scheduledTimer(withTimeInterval: 5, repeats: true, block: { _ in
                 wrongResult()
-                getNewNumber()
                 
             })
         }
         .alert("Summary", isPresented: $showSummary) {
             Button("OK") {
-                showSummary = false
+                startNewGame()
             }
         }
         .padding()
@@ -64,6 +61,7 @@ struct ContentView: View {
     func wrongResult() {
         wrong += 1
         result = "Last number: ❌"
+        getNewNumber()
     }
     
     func getNewNumber() {
@@ -81,6 +79,14 @@ struct ContentView: View {
             return false
         }
         return true
+    }
+    
+    func startNewGame() {
+        result = ""
+        correct = 0
+        wrong = 0
+        showSummary = false
+        getNewNumber()
     }
 }
 
