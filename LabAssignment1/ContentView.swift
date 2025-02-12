@@ -20,6 +20,7 @@ struct ContentView: View {
         VStack(spacing: 25) {
             Text("Prime Number Game")
                 .font(.title)
+                .foregroundColor(Color.teal)
             
             Text("\(number)")
                 .font(.title)
@@ -49,6 +50,7 @@ struct ContentView: View {
         }
         .padding()
     }
+    
     
     func answer(isPrime: Bool) {
         if isPrime == isPrimeNumber(n: number) {
