@@ -37,10 +37,15 @@ struct ContentView: View {
         .onAppear {
             startNewGame()
         }
-        .alert("Summary", isPresented: $showSummary) {
-            Button("OK") {
-                startNewGame()
-            }
+        .alert(isPresented: $showSummary) {
+            Alert(
+                title: Text("Game Summary"),
+                message: Text("Correct guesses: \(correct), incorrect: \(wrong)"),
+                dismissButton: .default(
+                    Text("Try Again"),
+                    action: startNewGame
+                )
+            )
         }
         .padding()
     }
@@ -63,7 +68,7 @@ struct ContentView: View {
     
     func getNewNumber() {
         number = Int.random(in: 1...100)
-        if correct + wrong > 10 {
+        if correct + wrong >= 10 {
             showSummary = true
             timer?.invalidate()
         }
