@@ -23,7 +23,7 @@ struct ContentView: View {
             
             Text("\(number)")
                 .font(.title)
-                .foregroundColor(Color.purple)
+                .foregroundColor(Color.green)
             
             Button("Prime") {
                 answer(isPrime: true)
