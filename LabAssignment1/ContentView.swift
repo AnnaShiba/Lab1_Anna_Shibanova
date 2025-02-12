@@ -71,6 +71,8 @@ struct ContentView: View {
         if correct + wrong >= 10 {
             showSummary = true
             timer?.invalidate()
+        } else {
+            restartTimer()
         }
     }
     
@@ -84,16 +86,19 @@ struct ContentView: View {
         return true
     }
     
+    func restartTimer() {
+        timer?.invalidate()
+        timer = Timer.scheduledTimer(withTimeInterval: 5, repeats: true, block: { _ in
+            wrongResult()
+        })
+    }
+    
     func startNewGame() {
         result = ""
         correct = 0
         wrong = 0
         showSummary = false
         getNewNumber()
-        timer = Timer.scheduledTimer(withTimeInterval: 5, repeats: true, block: { _ in
-            wrongResult()
-            
-        })
     }
 }
 
