@@ -23,11 +23,11 @@ struct ContentView: View {
             VStack(spacing: 25) {
                 Text("Prime Number Game")
                     .font(.title)
-                    .foregroundColor(Color.teal)
+                    .foregroundColor(Color.white)
                 
                 Text("\(number)")
                     .font(.title)
-                    .foregroundColor(Color.green)
+                    .foregroundColor(Color.purple)
                 
                 Button("Prime") {
                     answer(isPrime: true)
