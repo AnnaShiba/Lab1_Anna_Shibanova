@@ -12,6 +12,7 @@ struct ContentView: View {
     @State private var correct = 0
     @State private var wrong = 0
     @State private var result: String? = nil
+    @State private var timer: Timer? = nil
     @State private var showSummary: Bool = false
     
     
@@ -34,11 +35,7 @@ struct ContentView: View {
             Text(result ?? "")
         }
         .onAppear {
-            getNewNumber()
-            Timer.scheduledTimer(withTimeInterval: 5, repeats: true, block: { _ in
-                wrongResult()
-                
-            })
+            startNewGame()
         }
         .alert("Summary", isPresented: $showSummary) {
             Button("OK") {
@@ -68,6 +65,7 @@ struct ContentView: View {
         number = Int.random(in: 1...100)
         if correct + wrong > 10 {
             showSummary = true
+            timer?.invalidate()
         }
     }
     
@@ -87,6 +85,10 @@ struct ContentView: View {
         wrong = 0
         showSummary = false
         getNewNumber()
+        timer = Timer.scheduledTimer(withTimeInterval: 5, repeats: true, block: { _ in
+            wrongResult()
+            
+        })
     }
 }
 
