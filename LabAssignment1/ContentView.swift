@@ -19,7 +19,7 @@ struct ContentView: View {
     var body: some View {
         VStack(spacing: 25) {
             Text("Prime Number Game")
-                .font(.headline)
+                .font(.title)
             
             Text("\(number)")
                 .font(.title)
