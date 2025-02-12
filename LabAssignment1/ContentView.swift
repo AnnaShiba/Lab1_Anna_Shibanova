@@ -17,23 +17,27 @@ struct ContentView: View {
     
     
     var body: some View {
-        VStack(spacing: 25) {
-            Text("Prime Number Game")
-                .font(.title)
-                .foregroundColor(Color.teal)
+        ZStack {
+            Color.teal.edgesIgnoringSafeArea(.all)
             
-            Text("\(number)")
-                .font(.title)
-                .foregroundColor(Color.green)
-            
-            Button("Prime") {
-                answer(isPrime: true)
+            VStack(spacing: 25) {
+                Text("Prime Number Game")
+                    .font(.title)
+                    .foregroundColor(Color.teal)
+                
+                Text("\(number)")
+                    .font(.title)
+                    .foregroundColor(Color.green)
+                
+                Button("Prime") {
+                    answer(isPrime: true)
+                }
+                Button("Not Prime") {
+                    answer(isPrime: false)
+                }
+                
+                Text(result ?? "")
             }
-            Button("Not Prime") {
-                answer(isPrime: false)
-            }
-            
-            Text(result ?? "")
         }
         .onAppear {
             startNewGame()
